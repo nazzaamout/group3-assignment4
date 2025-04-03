@@ -10,6 +10,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import pool from "./db.js";
 import authRoutes from "./routes/authRoutes.js";
+import messageRoutes from "./routes/messageRoutes.js";
+
+import { EventEmitter } from "events";
+EventEmitter.defaultMaxListeners = 20;
 
 dotenv.config();
 
@@ -18,6 +22,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
 
 app.get("/test-db", async (req, res) => {
   try {
