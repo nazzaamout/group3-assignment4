@@ -8,6 +8,125 @@ body {
   color: #eee;
   height: 100vh;
 }
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+.auth-form {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form h2 {
+  margin-bottom: 1rem;
+}
+
+.auth-form label {
+  display: block;
+  margin-top: 1rem;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.password-row {
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle {
+  margin-left: 0.5rem;
+}
+
+.checkbox-row {
+  margin-top: 1rem;
+}
+
+.login-btn,
+.logout-btn {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.75rem;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+}
+
+.success {
+  color: green;
+  margin-top: 1rem;
+}
+
+.auth-switch {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.message-list {
+  margin-top: 1rem;
+}
+
+.message-card {
+  display: flex;
+  align-items: flex-start;
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.message-avatar {
+  width: 40px;
+  height: 40px;
+  background: #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.message-body p {
+  margin: 0.5rem 0 0 0;
+}
+
+.edit-btn-group {
+  margin-left: auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-textarea {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.message-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-form textarea {
+  margin-bottom: 0.5rem;
+}
+
 
 /* === Shared Container === */
 .form-wrapper {

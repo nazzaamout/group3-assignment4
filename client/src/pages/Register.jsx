@@ -9,7 +9,6 @@ function Register() {
     password: '',
     confirmPassword: '',
   });
-
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -17,7 +16,7 @@ function Register() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
@@ -25,9 +24,13 @@ function Register() {
     setError(null);
     setSuccess(false);
 
-    // Client-side password match check
+    // Basic client-side checks
     if (form.password !== form.confirmPassword) {
-      setError("Passwords do not match.");
+      setError('Passwords do not match.');
+      return;
+    }
+    if (form.password.length < 8) {
+      setError('Password must be at least 8 characters.');
       return;
     }
 
