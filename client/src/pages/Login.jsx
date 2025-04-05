@@ -10,13 +10,15 @@ function Login() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.password.length < 6) {
-      setError('Password must be at least 6 characters.');
+
+    // Basic client-side password length check
+    if (form.password.length < 8) {
+      setError('Password must be at least 8 characters.');
       return;
     }
 
@@ -28,14 +30,18 @@ function Login() {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Login failed');
+      if (!res.ok) {
+        throw new Error(data.error || 'Login failed');
+      }
 
+      // Store token in local or session storage
       if (rememberMe) {
         localStorage.setItem('token', data.token);
       } else {
         sessionStorage.setItem('token', data.token);
       }
 
+      // Redirect to /messages
       navigate('/messages');
     } catch (err) {
       setError(err.message);
@@ -70,8 +76,7 @@ function Login() {
           <button
             type="button"
             className="password-toggle"
-            onClick={() => setShowPassword(prev => !prev)}
-            aria-label="Toggle password visibility"
+            onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? '🙈' : '👁️'}
           </button>
@@ -82,7 +87,7 @@ function Login() {
             type="checkbox"
             id="remember"
             checked={rememberMe}
-            onChange={e => setRememberMe(e.target.checked)}
+            onChange={(e) => setRememberMe(e.target.checked)}
           />
           <label htmlFor="remember">Remember me</label>
         </div>
@@ -92,7 +97,7 @@ function Login() {
         {error && <p className="error">{error}</p>}
 
         <p className="auth-switch">
-            Don’t have an account? <a href="/register">Register</a>
+          Don’t have an account? <a href="/register">Register</a>
         </p>
       </form>
     </div>

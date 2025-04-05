@@ -1,7 +1,7 @@
 /**
  * @file server/index.js
  * @description This file is the entry point for the server. It sets up the server, middleware, and routes.
- * @author Naz Zaamout
+ * @author Naz
  * @date 2023-10-01
  * @license MIT
  */
@@ -35,8 +35,5 @@ app.get("/test-db", async (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  PORT,
-    () => {
-      console.log(`Server is running on port ${PORT}`);
-    };
+  console.log(`Server is running on port ${PORT}`);
 });

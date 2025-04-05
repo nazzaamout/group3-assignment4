@@ -38,16 +38,30 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Messages from './pages/Messages';
+import ProtectedRoute from './ProtectedRoute'; // optional route guard
 
 function App() {
   return (
     <Routes>
+      {/* Redirect root to /login */}
       <Route path="/" element={<Navigate to="/login" />} />
+
+      {/* Public routes */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/messages" element={<Messages />} />
+
+      {/* Protected route for Messages */}
+      <Route
+        path="/messages"
+        element={
+          <ProtectedRoute>
+            <Messages />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }
 
 export default App;
+
