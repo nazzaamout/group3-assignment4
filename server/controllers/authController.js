@@ -1,6 +1,7 @@
 /**
  * @file authController.js
  * @description Authentication controller functions for user registration and login.
+ *
  */
 
 import bcrypt from 'bcrypt';
