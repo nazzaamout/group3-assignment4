@@ -1,4 +1,5 @@
-name: Basic CI Workflow
+# .github/workflows/badge-only.yml
+name: GitHub Actions Badge Workflow
 
 on:
   push:
@@ -7,12 +8,12 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  badge-run:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: npm install
+      - name: Echo success
+        run: echo "🎉 GitHub Actions badge triggered by Naz!"
