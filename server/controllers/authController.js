@@ -3,10 +3,10 @@
  * @description Authentication controller functions for user registration and login.
  */
 
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import pool from "../db.js";
-import dotenv from "dotenv";
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import pool from '../db.js';
+import dotenv from 'dotenv';
 dotenv.config();
 
 // Basic email regex for quick validation
@@ -17,13 +17,17 @@ export const register = async (req, res) => {
 
   // Validate inputs
   if (!username || !email || !password) {
-    return res.status(400).json({ error: "Username, email, and password are required." });
+    return res
+      .status(400)
+      .json({ error: 'Username, email, and password are required.' });
   }
   if (!emailRegex.test(email)) {
-    return res.status(400).json({ error: "Invalid email format." });
+    return res.status(400).json({ error: 'Invalid email format.' });
   }
   if (password.length < 8) {
-    return res.status(400).json({ error: "Password must be at least 8 characters." });
+    return res
+      .status(400)
+      .json({ error: 'Password must be at least 8 characters.' });
   }
 
   try {
@@ -32,7 +36,7 @@ export const register = async (req, res) => {
 
     // Insert new user
     const [result] = await pool.query(
-      "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+      'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
       [username, email, hashedPassword]
     );
 
@@ -43,19 +47,22 @@ export const register = async (req, res) => {
   }
 };
 
+// Login function to authenticate users
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
   // Basic checks
   if (!email || !password) {
-    return res.status(400).json({ error: "Email and password are required." });
+    return res.status(400).json({ error: 'Email and password are required.' });
   }
 
   try {
     // Find user by email
-    const [rows] = await pool.query("SELECT * FROM users WHERE email = ?", [email]);
+    const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [
+      email,
+    ]);
     if (rows.length === 0) {
-      return res.status(401).json({ error: "Invalid credentials" });
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     const user = rows[0];
@@ -63,14 +70,14 @@ export const login = async (req, res) => {
     // Compare password with hashed password
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      return res.status(401).json({ error: "Invalid credentials" });
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     // Generate JWT
     const token = jwt.sign(
       { id: user.id, username: user.username },
       process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRATION || "1h" }
+      { expiresIn: process.env.JWT_EXPIRATION || '1h' }
     );
 
     res.json({ token });

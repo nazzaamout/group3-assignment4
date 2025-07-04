@@ -4,5 +4,24 @@
         "msgboard",
         "SAIT",
         "Zaamout"
-    ]
+    ],
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#324d43",
+        "activityBar.background": "#324d43",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#110d13",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#324d43",
+        "statusBar.background": "#1e2e28",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#324d43",
+        "statusBarItem.remoteBackground": "#1e2e28",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#1e2e28",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#1e2e2899",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    }
 }
